@@ -1,12 +1,18 @@
 ﻿using System;
+using ApplicationCore.Interfaces;
+using Autofac;
+using Infrastructure.ObjectMapping;
 
 namespace TreeVisualization
 {
     public class Program
     {
         [STAThread]
-        static void Main()
+        private static void Main()
         {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ObjectMapFactory>().As<IObjectMapFactory>().SingleInstance();
+
             App.Main();
         }
     }
